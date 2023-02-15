@@ -1,4 +1,7 @@
-import gradient, { Gradient } from "gradient-string";
+import inquirer from "inquirer";
+import { type Answers } from "inquirer";
+import gradient from "gradient-string";
+import chalk from "chalk";
 
 const gradienteDeColores = gradient("red", "green", "blue");
 const questions = [
@@ -72,3 +75,15 @@ const questions = [
     choices: ["Tarta de queso", "Brownie", "No quiero postre"],
   },
 ];
+
+console.log(
+  `${gradienteDeColores(
+    "¡Bienvenido a Pizza Coders!"
+  )} \n Por favor, rellene las opciones para pedir su ${chalk.yellowBright(
+    "pizza"
+  )}`
+);
+await inquirer.prompt(questions).then((answers: Answers) => {
+  console.log("\nAquí tiene su recibo: \n \n ");
+  console.log(JSON.stringify(answers, null, "  "));
+});
